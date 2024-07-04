@@ -24,8 +24,8 @@ public class UsuarioService {
 		return usuario.get();
 	}
 	
-	public void salvarUsuario(Usuario obj) {
-		repositorio.save(obj);
+	public Usuario salvarUsuario(Usuario obj) {
+		return repositorio.save(obj);
 	}
 	
 	public void deletarUsuario(Long id) {
