@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gerenciador.gerenciadorDeTarefas.entities.enums.StatusProjeto;
 
 import jakarta.persistence.Entity;
@@ -21,9 +22,15 @@ public class Projeto implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String descricao;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private LocalDateTime dataInicio;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private LocalDateTime dataFim;
+	
 	private StatusProjeto status;
 	
 	public Projeto() {
