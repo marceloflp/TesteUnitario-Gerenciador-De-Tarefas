@@ -25,8 +25,12 @@ public class Usuario implements Serializable{
 	private String email;
 	private String senha;
 	
-	@OneToMany(mappedBy= "cliente")
+	@OneToMany(mappedBy= "usuario")
 	private List<Projeto> projeto = new ArrayList<>();
+	
+	@OneToMany(mappedBy= "responsavel")
+	private List<Tarefa> tarefa = new ArrayList<>();
+	
 	
 	public Usuario() {
 		
@@ -66,6 +70,10 @@ public class Usuario implements Serializable{
 	
 	public List<Projeto> getProjeto() {
 		return projeto;
+	}
+	
+	public List<Tarefa> getTarefa() {
+		return tarefa;
 	}
 
 	@Override
