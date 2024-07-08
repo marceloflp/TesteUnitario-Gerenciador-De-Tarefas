@@ -1,12 +1,13 @@
 package com.gerenciador.gerenciadorDeTarefas.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gerenciador.gerenciadorDeTarefas.entities.enums.StatusProjeto;
 
 import jakarta.persistence.Entity;
@@ -29,10 +30,10 @@ public class Projeto implements Serializable{
 	private String descricao;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private LocalDateTime dataInicio;
+	private Instant dataInicio;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private LocalDateTime dataFim;
+	private Instant dataFim;
 	
 	private StatusProjeto status;
 	
@@ -43,7 +44,7 @@ public class Projeto implements Serializable{
 		
 	}
 	
-	public Projeto(Long id, String descricao, LocalDateTime dataInicio, LocalDateTime dataFim, StatusProjeto status) {
+	public Projeto(Long id, String descricao, Instant dataInicio, Instant dataFim, StatusProjeto status) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -68,19 +69,19 @@ public class Projeto implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public LocalDateTime getDataInicio() {
+	public Instant getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(LocalDateTime dataInicio) {
+	public void setDataInicio(Instant dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public LocalDateTime getDataFim() {
+	public Instant getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(LocalDateTime dataFim) {
+	public void setDataFim(Instant dataFim) {
 		this.dataFim = dataFim;
 	}
 
@@ -92,6 +93,7 @@ public class Projeto implements Serializable{
 		this.status = status;
 	}
 
+	@JsonIgnore
 	public List<Tarefa> getTarefa() {
 		return tarefa;
 	}

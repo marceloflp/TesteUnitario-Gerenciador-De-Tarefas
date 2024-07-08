@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,7 +35,7 @@ public class Usuario implements Serializable{
 		
 	}
 
-	public Usuario(Long id, String nome, String email, String senha, Projeto projeto) {
+	public Usuario(Long id, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -65,6 +67,7 @@ public class Usuario implements Serializable{
 		this.senha = senha;
 	}
 	
+	@JsonIgnore
 	public List<Tarefa> getTarefa() {
 		return tarefa;
 	}

@@ -1,7 +1,7 @@
 package com.gerenciador.gerenciadorDeTarefas.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 import com.gerenciador.gerenciadorDeTarefas.entities.enums.StatusTarefa;
@@ -24,8 +24,8 @@ public class Tarefa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
-	private LocalDateTime dataCriacao;
-	private LocalDateTime dataConclusao;
+	private Instant dataCriacao;
+	private Instant dataConclusao;
 	private StatusTarefa status;
 
 	@ManyToOne()
@@ -40,7 +40,7 @@ public class Tarefa implements Serializable {
 		
 	}
 
-	public Tarefa(Long id, String titulo, LocalDateTime dataCriacao, LocalDateTime dataConclusao, StatusTarefa status,
+	public Tarefa(Long id, String titulo, Instant dataCriacao, Instant dataConclusao, StatusTarefa status,
 			Usuario responsavel, Projeto projeto) {
 		super();
 		this.id = id;
@@ -68,19 +68,19 @@ public class Tarefa implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public LocalDateTime getDataCriacao() {
+	public Instant getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDateTime dataCriacao) {
+	public void setDataCriacao(Instant dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public LocalDateTime getDataConclusao() {
+	public Instant getDataConclusao() {
 		return dataConclusao;
 	}
 
-	public void setDataConclusao(LocalDateTime dataConclusao) {
+	public void setDataConclusao(Instant dataConclusao) {
 		this.dataConclusao = dataConclusao;
 	}
 
