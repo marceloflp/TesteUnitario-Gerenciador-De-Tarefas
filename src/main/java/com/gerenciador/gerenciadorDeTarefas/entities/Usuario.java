@@ -25,9 +25,6 @@ public class Usuario implements Serializable{
 	private String email;
 	private String senha;
 	
-	@OneToMany(mappedBy= "usuario")
-	private List<Projeto> projeto = new ArrayList<>();
-	
 	@OneToMany(mappedBy= "responsavel")
 	private List<Tarefa> tarefa = new ArrayList<>();
 	
@@ -66,10 +63,6 @@ public class Usuario implements Serializable{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	
-	public List<Projeto> getProjeto() {
-		return projeto;
 	}
 	
 	public List<Tarefa> getTarefa() {
