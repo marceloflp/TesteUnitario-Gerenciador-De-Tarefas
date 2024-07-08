@@ -2,6 +2,8 @@ package com.gerenciador.gerenciadorDeTarefas.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +41,9 @@ public class Projeto implements Serializable{
 	@ManyToOne()
 	@JoinColumn(name = "usuario_id", nullable= false)
 	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "projeto")
+	private List<Tarefa> tarefa = new ArrayList<>();
 	
 	public Projeto() {
 		
@@ -99,6 +105,10 @@ public class Projeto implements Serializable{
 
 	public void setStatus(StatusProjeto status) {
 		this.status = status;
+	}
+
+	public List<Tarefa> getTarefa() {
+		return tarefa;
 	}
 
 	@Override

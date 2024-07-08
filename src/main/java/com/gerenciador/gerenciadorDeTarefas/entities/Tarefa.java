@@ -32,6 +32,8 @@ public class Tarefa implements Serializable {
 	@JoinColumn(name = "responsavel_id", nullable = false)
 	private Usuario responsavel;
 	
+	@ManyToOne()
+	@JoinColumn(name = "projeto_id", nullable = false)
 	private Projeto projeto;
 	
 	public Tarefa() {
