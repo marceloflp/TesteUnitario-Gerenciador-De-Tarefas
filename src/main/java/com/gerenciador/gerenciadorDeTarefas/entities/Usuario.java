@@ -1,12 +1,15 @@
 package com.gerenciador.gerenciadorDeTarefas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,11 +25,14 @@ public class Usuario implements Serializable{
 	private String email;
 	private String senha;
 	
+	@OneToMany(mappedBy= "cliente")
+	private List<Projeto> projeto = new ArrayList<>();
+	
 	public Usuario() {
 		
 	}
-	
-	public Usuario(Long id, String nome, String email, String senha) {
+
+	public Usuario(Long id, String nome, String email, String senha, Projeto projeto) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -57,6 +63,11 @@ public class Usuario implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public List<Projeto> getProjeto() {
+		return projeto;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

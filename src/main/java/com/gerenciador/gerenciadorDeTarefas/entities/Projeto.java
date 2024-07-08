@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,13 +35,18 @@ public class Projeto implements Serializable{
 	
 	private StatusProjeto status;
 	
+	@ManyToOne()
+	@JoinColumn(name = "usuario_id", nullable= false)
+	private Usuario usuario;
+	
 	public Projeto() {
 		
 	}
 	
-	public Projeto(Long id, String descricao, LocalDateTime dataInicio, LocalDateTime dataFim, StatusProjeto status) {
+	public Projeto(Long id,Usuario usuario , String descricao, LocalDateTime dataInicio, LocalDateTime dataFim, StatusProjeto status) {
 		super();
 		this.id = id;
+		this.usuario = usuario;
 		this.descricao = descricao;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
@@ -48,6 +55,14 @@ public class Projeto implements Serializable{
 
 	public Long getId() {
 		return id;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setId(Long id) {
