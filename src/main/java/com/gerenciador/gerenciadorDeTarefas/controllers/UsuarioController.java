@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gerenciador.gerenciadorDeTarefas.entities.Usuario;
+import com.gerenciador.gerenciadorDeTarefas.entities.dto.UsuarioDTO;
 import com.gerenciador.gerenciadorDeTarefas.services.UsuarioService;
 
 @RestController
@@ -26,8 +27,8 @@ public class UsuarioController {
 	private UsuarioService service;
 
 	@GetMapping()
-	public ResponseEntity<List<Usuario>> listarUsuarios() {
-		List<Usuario> usuarios = service.listarUsuarios();
+	public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
+		List<UsuarioDTO> usuarios = service.listarUsuarios();
 
 		return ResponseEntity.ok().body(usuarios);
 	}

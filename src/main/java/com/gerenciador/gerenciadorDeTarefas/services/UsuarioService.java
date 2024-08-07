@@ -2,6 +2,7 @@ package com.gerenciador.gerenciadorDeTarefas.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.gerenciador.gerenciadorDeTarefas.entities.Usuario;
+import com.gerenciador.gerenciadorDeTarefas.entities.dto.UsuarioDTO;
 import com.gerenciador.gerenciadorDeTarefas.repositories.UsuarioRepository;
 import com.gerenciador.gerenciadorDeTarefas.services.exceptions.DatabaseException;
 import com.gerenciador.gerenciadorDeTarefas.services.exceptions.ResourceNotFoundException;
@@ -21,8 +23,11 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repositorio;
 	
-	public List<Usuario> listarUsuarios() {
-		return repositorio.findAll();	
+	public List<UsuarioDTO> listarUsuarios() {
+		List<Usuario> usuarios = repositorio.findAll();
+        return usuarios.stream()
+                .map(usuario -> new UsuarioDTO(usuario.getId(), usuario.getNome(), usuario.getEmail()))
+                .collect(Collectors.toList());
 	}
 	
 	public Usuario buscarPorId(Long id) {
