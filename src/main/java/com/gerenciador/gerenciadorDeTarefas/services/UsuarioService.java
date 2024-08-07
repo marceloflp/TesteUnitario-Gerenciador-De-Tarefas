@@ -30,9 +30,10 @@ public class UsuarioService {
                 .collect(Collectors.toList());
 	}
 	
-	public Usuario buscarPorId(Long id) {
-		Optional<Usuario> usuario = repositorio.findById(id);
-		return usuario.orElseThrow(() -> new ResourceNotFoundException("Erro ao buscar usuário."));
+	public UsuarioDTO buscarPorId(Long id) {
+		Optional<Usuario> usuarioOPT = repositorio.findById(id);
+		Usuario usuario = usuarioOPT.orElseThrow(() -> new ResourceNotFoundException("Erro ao buscar usuário."));
+		return new UsuarioDTO(usuario);
 	}
 	
 	public Usuario salvarUsuario(Usuario obj) {
